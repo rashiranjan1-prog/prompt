@@ -8,7 +8,7 @@ rating_grades = [
 ]
 
 # Modified PD values (%)
-# N/A values have been taken as 0.05% as requested.
+# N/A values are kept blank using np.nan
 
 data = {
     "Overall CIRM": [
@@ -22,22 +22,22 @@ data = {
     ],
 
     "SME MFG": [
-        0.05, 0.05, 0.06, 0.21, 0.41,
+        np.nan, np.nan, 0.06, 0.21, 0.41,
         0.38, 0.70, 1.27, 2.31, 11.65, 7.34
     ],
 
     "SME Service": [
-        0.05, 0.05, 0.73, 0.73, 1.04,
+        np.nan, np.nan, 0.73, 0.73, 1.04,
         1.47, 2.08, 2.94, 4.14, 5.80, 8.07
     ],
 
     "LTM": [
-        0.05, 0.05, 0.06, 0.14, 0.33,
+        np.nan, np.nan, 0.06, 0.14, 0.33,
         0.74, 1.66, 3.69, 8.01, 16.49, 30.94
     ],
 
     "STM": [
-        0.05, 0.05, 0.05, 0.28, 0.24,
+        np.nan, np.nan, np.nan, 0.28, 0.24,
         0.36, 0.82, 2.48, 5.53, 7.29, 8.01
     ],
 
@@ -47,12 +47,15 @@ data = {
     ],
 
     "Real Estate": [
-        0.05, 0.05, 0.67, 0.68, 0.71,
+        np.nan, np.nan, 0.67, 0.68, 0.71,
         0.82, 1.07, 1.58, 2.88, 5.54, 10.83
     ]
 }
 
-# Create the chart
+# ============================================================
+# CREATE CHART
+# ============================================================
+
 plt.figure(figsize=(15, 8))
 
 x = np.arange(len(rating_grades))
@@ -69,11 +72,24 @@ for name, values in data.items():
     )
 
 # X-axis
-plt.xticks(x, rating_grades)
-plt.xlabel("Rating Grades", fontsize=12, fontweight="bold")
+plt.xticks(
+    x,
+    rating_grades,
+    fontsize=10
+)
+
+plt.xlabel(
+    "Rating Grades",
+    fontsize=12,
+    fontweight="bold"
+)
 
 # Y-axis
-plt.ylabel("Modified PD (%)", fontsize=12, fontweight="bold")
+plt.ylabel(
+    "Modified PD (%)",
+    fontsize=12,
+    fontweight="bold"
+)
 
 # Title
 plt.title(
